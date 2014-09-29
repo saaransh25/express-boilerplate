@@ -1,0 +1,57 @@
+<%-contentFor('body')%>
+<div class="container">
+<div class="col-sm-offset-3 col-sm-6">
+<form action="/login" method="post" role="form" class="form-horizontal" id="loginform">
+    <h2 class="col-sm-offset-4">Please sign in</h2>
+    </br>
+    <% if (error) { %>
+    <div class="alert alert-danger"><p><%=error%></p></div>
+    <% } %>
+    <div class="form-group">
+        <label for="user" class="control-label col-sm-4">Username:</label>
+        <div class="col-sm-6">
+        <input id="user" class="form-control" type="text" name="username" placeholder="Enter username"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pass" class="control-label col-sm-4">Password:</label>
+        <div class="col-sm-6">
+        <input id="user" class="form-control" type="password" name="password" placeholder="Enter password"/>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-6">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+</form>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+    $('#loginform').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: 'The username is required and cannot be empty'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password cannot be empty'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
